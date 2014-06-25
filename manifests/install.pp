@@ -4,12 +4,7 @@ class smokeping::install {
         ensure => $smokeping::version
     }
 
-    if ! defined (Package['fping']) {
-        package {'fping': ensure => installed; }
-    }
-    if ! defined (Package['perl-doc']) {
-        package {'perl-doc': ensure => installed; }
-    }
+    ensure_packages(['fping', 'perl-doc'])
 
     # correct permissions
     file {
