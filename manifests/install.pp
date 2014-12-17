@@ -5,8 +5,6 @@ class smokeping::install {
       }
     }
 
-    ensure_packages(['fping', 'perl-doc'])
-
     # correct permissions
     file {
         $smokeping::path_datadir:
