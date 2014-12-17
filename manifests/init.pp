@@ -49,7 +49,8 @@
 #   Syslog Facility (Default: local0)
 #
 # [*probes*]
-#   Probe definitions as Array of Hashes (Default: { name => 'FPing', binary => '/usr/bin/fping' })
+#   Probe definitions as Array of Hashes (Default: { name => 'FPing', binary => '/usr/bin/fping' }),
+#   Additional parameters for the probes can be passed (Example: {name => 'EchoPingHttp', binary => '/usr/bin/echoping', 'accept_redirects  => 'yes'}
 #
 # [*default_probe*]
 #   Default Probe (Default: FPing)
@@ -118,6 +119,9 @@
 # [*start*]
 #   Should the service be started by Puppet? (Default: true)
 #
+# [*manage_package*]
+#   Should the module manage the installation of the package ? (Default: true)
+#
 # === Author
 #
 # Tobias Brunner <tobias.brunner@nine.ch>
@@ -165,6 +169,7 @@ class smokeping(
     $version            = 'present',
     $enable             = true,
     $start              = true,
+    $manage_package     = true,
 ) {
     class{'smokeping::install': } ->
     class{'smokeping::config': } ~>

@@ -1,7 +1,8 @@
 class smokeping::install {
-
-    package { 'smokeping':
-        ensure => $smokeping::version
+    if smokeping::manage_package {
+      package { 'smokeping':
+          ensure => $smokeping::version
+      }
     }
 
     ensure_packages(['fping', 'perl-doc'])
